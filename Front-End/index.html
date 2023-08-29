@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>productApp</title>
+    <style>
+        /* Roboto Slab font having font-weight:600 is imported from google fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&display=swap');
+
+        body {
+            font-family: 'Roboto Slab', serif;
+            margin: 0;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        /* Nav Bar styling */
+        .brand-name {
+            text-align: center;
+            color: brown;
+        }
+
+        .linkbar {
+            list-style-type: none;
+            display: flex;
+            width: 100%;
+            background-color: dodgerblue;
+            justify-content: space-between;
+            box-sizing: border-box;
+            padding: 20px;
+        }
+
+        .linkbar a {
+            text-decoration: none;
+            color: white;
+        }
+
+        /* Nav Bar styling Ends*/
+        #form {
+            width: 400px;
+            border: 1px solid lightgrey;
+            margin: 25px auto;
+            border-radius: 16px;
+            padding:20px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .p-url,
+        .p-name,
+        .p-desc,
+        .p-price,
+        .p-rating {
+            color: brown;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 200px;
+            height: 20px;
+            border: 1px solid dodgerblue;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            border: none;
+            padding: 15px 70px;
+            border-radius: 25px;
+            background-color: black;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .flex-box-jokes
+        {
+            display:flex;
+            flex-wrap:wrap;
+            box-sizing: border-box;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+        .joke-card
+        {
+            width: 400px;
+            margin:10px; 
+            margin-bottom: 0;
+            border:1px solid dodgerblue;
+            border-radius:14px;
+        }
+        .joke-card p
+        {
+            color:darkorchid;
+            padding-left:15px;
+        }
+        .flex-box-anime
+        {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            box-sizing: border-box;
+            gap:50px;
+        }
+        .anime-card
+        {
+            width: 325px;
+            padding: 10px;
+            border:1px solid lightgrey;
+            border-radius:14px;
+        }
+        .flex-box-body{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+        .card{
+            width: 300px;
+            height: 350px;
+            padding: 10px;
+            margin-bottom: 0;
+            /* border:1px solid lightgrey; */
+        }
+
+        .c-top {
+            position: relative;
+        }
+
+        .c-image {
+            width: 100%;
+            border-radius: 14px;
+        }
+
+        .heart-image {
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .c-bottom {
+            margin-top: 10px;
+            position: relative;
+        }
+
+        .desc .desription {
+            color: grey;
+        }
+
+        .c-bottom .heading,
+        .price-link {
+            color: black;
+            font-weight: bold;
+        }
+
+        .c-bottom .price-link {
+            text-decoration: underline;
+        }
+
+        .c-bottom .star-img {
+            width: 15px;
+            height: 15px;
+        }
+
+        .c-bottom .rating {
+            font-weight: bold;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <!--Nav Bar-->
+    <div class="navbar">
+        <h1 class="brand-name">The productApp</h1>
+        <ul class="linkbar">
+            <li style="color: white;">productApp</li>
+            <li><a href="#" id="login" onClick="logout(event)">Login</a></li>
+        </ul>
+    </div>
+    <!--Static Content-->
+    <h2 style="color: brown; margin-left: 100px;">Laugh Out Loud</h2>
+    <div class="flex-box-jokes" id="flex-box-jokes">
+    </div>
+    <!--Static Content Ends-->
+
+    <!--Kitsu API content-->
+    <h2 style="color: brown; margin-left: 100px;">which is your favorite animation?</h2>
+    <div class="flex-box-anime" id="flex-box-anime">
+    </div>
+    <!--Kitsu API content Ends-->
+
+    <!--Add product Form-->
+    <h2 style="text-align: center;color: brown;">Add Product to the Page</h2>
+    <h2 style="text-align: center;color: brown; font-size: smaller;">add or delete any product to the below section using this form</h2>
+    <h2 style="text-align: center;color: brown; font-size: smaller;">You can load existing products from DB also.</h2>
+    <div id="form">
+        <div class="p-url">
+            <label for="url">Image Url &emsp;&emsp;</label>
+            <input type="text" id="url">
+        </div>
+        <div class="p-name">
+            <label for="name">Product Name&nbsp;</label>
+            <input type="text" id="name">
+        </div>
+        <div class="p-desc">
+            <label for="desc">Description&emsp;&nbsp;&nbsp;</label>
+            <input type="text" id="desc">
+        </div>
+        <div class="p-price">
+            <label for="price">Price&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;</label>
+            <input type="number" id="price">
+        </div>
+        <div class="p-rating">
+            <label for="rating">Rating&emsp;&emsp;&emsp;&emsp;</label>
+            <input type="number" id="rating">
+        </div>
+        <button type="submit" id="submit">Add Product&emsp;&emsp;</button>
+    </div>
+    <button onClick="loadProducts()" style="float: right;">Load Products from DB</button><br><br>
+    <hr style="color: lightgrey;">
+
+    <!--Products flex box-->
+    <div class="flex-box-body" id="flexbox">    
+    </div>
+    <script>
+        const accessToken = localStorage.getItem("access_token");
+        if(accessToken) // if logged in or usertoken exists in local storage
+        {
+            document.getElementById("login").innerText = "Logout";
+        } 
+        function logout(event)
+        {
+            console.dir(event.target);
+            if (event.target.innerText == "Logout")
+            {
+                localStorage.clear();
+                window.location.href = "/";
+            }
+            else
+            {
+                window.location.href = "/login"; 
+            }
+        }
+
+        // display joke cards from https://official-joke-api.appspot.com/jokes/ten
+        async function display_jokes()
+        {
+            url = "https://official-joke-api.appspot.com/jokes/ten";
+            try {
+	            const response = await fetch(url);
+	            const jokes = await response.json();
+	            console.log("jokes:",jokes);
+                for (let i in jokes) {
+                    if(i <= 8){  //display 9 jokes
+                    let card = `
+                    <div class="joke-card">
+                        <p class="setup">${jokes[i].setup}</p>
+                        <p class="punchline">${jokes[i].punchline}</p>
+                    </div>` ;
+                    const flexbox_joke = document.getElementById("flex-box-jokes");
+                    flexbox_joke.innerHTML += card;
+                }}
+            } catch (error) 
+            {
+	            console.error("Inside catch display_jokes(): error: ",error);
+            }
+        }
+        display_jokes();
+        
+        // display anime cards from https://kitsu.docs.apiary.io/#introduction/json:api
+        async function display_animes()
+        {
+            url = "https://kitsu.io/api/edge/anime?filter[categories]=adventure";
+            try {
+	            const response = await fetch(url);
+	            const animes = await response.json();
+	            console.log("animes:",animes);
+                for (let i in animes.data) {
+                    // console.log("canonicalTitle: ",animes.data[i].attributes.canonicalTitle);
+                    // console.log("episodeLength:",animes.data[i].attributes.episodeLength);
+                    // console.log("posterImage:",animes.data[i].attributes.posterImage.large);
+                    const title = animes.data[i].attributes.canonicalTitle;
+                    const episodeLength = animes.data[i].attributes.episodeLength; 
+                    const posterImage = animes.data[i].attributes.posterImage.large;   
+                    let card = `
+                    <div class="anime-card">
+                        <div class="c-top">
+                            <img src="${posterImage}" alt="Image" class="c-image">
+                        </div>
+                        <div class="c-bottom">
+                            <div class="desc">
+                                <span class="title" id="title"><span style="color: crimson;">Title : </span>${title}</span><br>
+                                <span class="episode-length"><span style="color: crimson;">Episode legth : </span>${episodeLength}</span>
+                            </div>
+                        </div>
+                    </div> ` ;
+                    const flexbox_anime = document.getElementById("flex-box-anime");
+                    flexbox_anime.innerHTML += card;
+                }
+                }catch (error) 
+                {
+	                console.error("Inside catch display_animes(): error: ",error);
+                }
+        }
+        display_animes();
+
+        //POST method implementation:
+        async function postProductData(url = "", data = {}) {
+            console.log("url :", url)
+            console.log("data :", data)
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*"
+                },
+                body: JSON.stringify(data),
+            });
+            let result = await response.json(); 
+            return result;
+        }
+        
+
+        let submit = document.getElementById("submit")
+        submit.addEventListener('click', async () => {
+          const access_token = localStorage.getItem("access_token");  
+          if (access_token){  //authentication
+            let imgUrl = document.getElementById("url").value.trim();
+            let name = document.getElementById("name").value.trim();
+            let desc = document.getElementById("desc").value.trim();
+            let price = document.getElementById("price").value.trim();
+            let rating = document.getElementById("rating").value.trim();
+
+            console.log("Submitting product data " + name)
+            const response = await postProductData("/add",
+                {
+                    "p_url": imgUrl,
+                    "p_name": name,
+                    "p_desc": desc,
+                    "p_price": price,
+                    "p_rating": rating
+                })
+            console.log("response: ", response)
+            if (response.success) {
+                document.getElementById("url").value = "";
+                document.getElementById("name").value = "";
+                document.getElementById("desc").value = "";
+                document.getElementById("price").value = "";
+                document.getElementById("rating").value = "";
+
+                // add js code to add one more card in the flexbox
+                let card = `
+                <div class="card">
+                    <div class="c-top">
+                        <img src = ${imgUrl} alt="Image" class="c-image">
+                    </div>
+                    <div class="c-bottom">
+                        <div class="desc">
+                            <span class="heading">${name}</span><br>
+                            <span class="desription">${desc}</span><br>
+                            <span class="price"><a href="#" class="price-link">${price}</a></span>
+                        </div>
+                        <div class="rating">
+                            <span class="value">*${rating}</span><br>
+                            <a href="#" class="delete" onClick="deleteItem(event)">delete</a>
+                        </div>
+                    </div>
+                </div>`;
+                const flexbox_prod = document.getElementById("flexbox")
+                flexbox_prod.innerHTML += card;
+                alert("Product successfully Added.See below");
+            }
+            else 
+            {
+                alert("Prduct Add failed.Check if product url is unique");
+            }
+        }});
+
+        async function deleteItem(event)
+        {
+          const access_token = localStorage.getItem("access_token");  
+          if(access_token){ //authentication
+            const deleteProduct = event.target;
+        
+            const cardToDelete =((deleteProduct.parentElement).parentElement).parentElement;
+            cardToDelete.remove();
+            const imgUrl = cardToDelete.children[0].childNodes[1].attributes[0].nodeValue;
+            console.log("imgurl: ",imgUrl);
+            console.dir(cardToDelete);
+
+            // send this imgUrl to backend using postDelete from here
+            const response = await postProductData("/delete",{"p_url": imgUrl})
+            console.log("response: ", response)
+            if (response.success) {
+                console.log("Inside index.html: Product deleted !")
+            }
+            else{
+                console.log("Inside index.html: Product deletetion failed !")
+            }
+          }
+        }
+        async function loadProducts()
+        {
+           const access_token = localStorage.getItem("access_token");
+           const flexbox_load = document.getElementById("flexbox"); 
+           if(access_token){ //authentication
+            const response = await postProductData("/home")
+            // flexbox_load.innerHTML = " ";
+            if (response.success) {
+                console.log("Inside index.html: Home Page: response.products: ",response.products)
+                const products = response.products;
+                flexbox_load.innerHTML = " ";
+                products.forEach(doc => {
+                    let card = `
+                <div class="card">
+                    <div class="c-top">
+                        <img src = ${doc.p_url} alt="Image" class="c-image">
+                    </div>
+                    <div class="c-bottom">
+                        <div class="desc">
+                            <span class="heading">${doc.p_name}</span><br>
+                            <span class="desription">${doc.p_desc}</span><br>
+                            <span class="price"><a href="#" class="price-link">${doc.p_price}</a></span>
+                        </div>
+                        <div class="rating">
+                            <span class="value">*${doc.p_rating}</span><br>
+                            <a href="#" class="delete" onClick="deleteItem(event)">delete</a>
+                        </div>
+                    </div>
+                </div>`; 
+                flexbox_load.innerHTML += card;
+                console.log("index.html: inside forEach()")
+                });
+            }
+            else{
+                console.log("Inside index.html: Can't Load Home Page !");
+                alert("Can't Load Home Page..");
+            }
+          }
+        }
+    </script>
+</body>
+</html>

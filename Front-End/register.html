@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <style>
+    /* Roboto Slab font having font-weight:600 is imported from google fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&display=swap');
+body
+{
+    font-family: 'Roboto Slab', serif;
+    margin: 0;
+    padding:0;
+}
+
+/* Nav Bar styling */
+.brand-name
+{
+    text-align: center;
+    color: brown;
+}
+.linkbar
+{
+    list-style-type: none;
+    display:flex;
+    width:100%;
+    background-color: dodgerblue;
+    justify-content:space-between;
+    box-sizing: border-box;
+    padding: 20px;
+} 
+.linkbar a   
+{
+    text-decoration: none;
+    color:white;
+}
+/* Nav Bar styling Ends*/
+#form
+{
+    width:450px;
+    border:1px solid lightgrey;
+    margin:65px auto;
+    border-radius: 16px;
+    padding:100px 25px;
+    text-align: center;
+}
+.username, .password
+{
+    color: brown;
+    margin-bottom:10px;
+}
+input
+{
+    width:200px;
+    height:20px;
+    border:1px solid dodgerblue;
+    border-radius: 5px;
+    font-size: 16px;
+}
+button
+{
+    width:100px;
+    border:none;
+    padding:10px 20px;
+    border-radius: 25px;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+</style>
+</head>
+<body>
+  <!--Nav Bar-->
+  <div class="navbar">
+    <h1 class="brand-name">The productApp</h1>
+    <ul class="linkbar">
+        <li style="color: white;">productApp</li>
+        <li><a href="/login">Login</a></li>
+    </ul>
+ </div>
+    <div id="form">
+        <div class="username">
+            <label for="user">USERNAME</label>
+            <input type="text" id="user">
+        </div>
+        <div class="password">
+            <label for="pwd">PASSWORD</label>
+            <input type="password" id="pwd">
+        </div>
+        <button type="submit" id="submit">Register</button>
+    </div>
+    <p style="text-align: center; color: brown;">If you are a registered user, please login</p>
+    <script>
+        //POST method implementation:
+        async function postRegistertData(url = "", data = {}) {
+            console.log("url :",url)
+            console.log("data :",data)
+            const response = await fetch(url, {
+                method: "POST", 
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*"
+                },
+                body: JSON.stringify(data),
+            });
+            let result = await response.json(); 
+            return result;
+        }
+    
+        let submit = document.getElementById("submit")
+        submit.addEventListener('click',async ()=>{
+            username = document.getElementById("user").value.trim()
+            password = document.getElementById("pwd").value.trim()
+            console.log("Submitting registration data " + username + " " + " " + password)
+            const response = await postRegistertData("/register",{"username":username,"password":password})
+            console.log("response: ",response)
+            if(response.success)
+            {
+                alert("Successfully Registered. Now you can Login");
+                document.getElementById("user").value = "";
+                document.getElementById("pwd").value = "" ;
+                window.location.href = '/login';
+            }
+            else
+            {
+                alert("Registration failed.User Already exists");
+            }
+        });
+    </script> 
+</body>
+</html>
