@@ -10,7 +10,7 @@ dotenv.config();
 
 // const root_dir = "/Users/indiraus/Desktop/The-Room-Assignment/productsApp";
 //const port = 3000; 
-const root_dir = "../";
+const root_dir = "./";
 const PORT = process.env.PORT ;
 const app = express();
 
